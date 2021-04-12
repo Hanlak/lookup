@@ -11,6 +11,7 @@ services:
     image: springboot-docker-container
     ports:
       - 8080:8080
+        #to scale: 18800-18803:8080
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/thestocker?autoReconnect=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
