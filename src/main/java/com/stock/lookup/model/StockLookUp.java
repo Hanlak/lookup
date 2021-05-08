@@ -3,7 +3,6 @@ package com.stock.lookup.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.stock.lookup.util.JsonDateSerializer;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +15,6 @@ import java.util.Date;
 @Table(name = "LOOKUP")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @IdClass(StockKey.class)
 public class StockLookUp {
@@ -30,13 +28,17 @@ public class StockLookUp {
   @JsonProperty("stock_name")
   private String stockName;
 
+  @Column(name = "WEIGHT_AGE", nullable = false)
+  @JsonProperty("weight_age")
+  private Integer weightAge;
+
   @Column(name = "BUY_START_RANGE", nullable = false)
   @JsonProperty("buy_start_range")
-  private Integer buyStartRange;
+  private Float buyStartRange;
 
   @Column(name = "BUY_END_RANGE", nullable = false)
   @JsonProperty("buy_end_range")
-  private Integer buyEndRange;
+  private Float buyEndRange;
 
   @UpdateTimestamp
   @Temporal(TemporalType.DATE)
@@ -44,4 +46,17 @@ public class StockLookUp {
   @JsonSerialize(using = JsonDateSerializer.class)
   @JsonProperty("creation_date")
   private Date creationDate;
+
+  public StockLookUp(
+          String groupName,
+          String stockName,
+          Integer weightAge,
+          Float buyStartRange,
+          Float buyEndRange) {
+    this.groupName = groupName;
+    this.stockName = stockName;
+    this.weightAge = weightAge;
+    this.buyStartRange = buyStartRange;
+    this.buyEndRange = buyEndRange;
+  }
 }

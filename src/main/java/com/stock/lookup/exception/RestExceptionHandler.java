@@ -21,32 +21,33 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        String error = "Malformed JSON request";
-        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
-    }
+  @Override
+  protected ResponseEntity<Object> handleHttpMessageNotReadable(
+          HttpMessageNotReadableException ex,
+          HttpHeaders headers,
+          HttpStatus status,
+          WebRequest request) {
+    String error = "Malformed JSON request";
+    return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
+  }
 
-    //Custom Exceptions:
+  // Custom Exceptions:
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    protected ResponseEntity<Object> handleEntityNotFound(
-            EntityNotFoundException ex) {
-        String error = "resource not found ";
-        ApiError apiError = new ApiError(NOT_FOUND, error, ex);
-        return buildResponseEntity(apiError);
-    }
+  @ExceptionHandler(EntityNotFoundException.class)
+  protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
+    String error = "resource not found ";
+    ApiError apiError = new ApiError(NOT_FOUND, error, ex);
+    return buildResponseEntity(apiError);
+  }
 
-    @ExceptionHandler(DataAccessException.class)
-    protected ResponseEntity<Object> handleDataAccessException(
-            DataAccessException ex) {
-        String error = "sql exception";
-        ApiError apiError = new ApiError(BAD_REQUEST, error, ex);
-        return buildResponseEntity(apiError);
-    }
+  @ExceptionHandler(DataAccessException.class)
+  protected ResponseEntity<Object> handleDataAccessException(DataAccessException ex) {
+    String error = "sql exception";
+    ApiError apiError = new ApiError(BAD_REQUEST, error, ex);
+    return buildResponseEntity(apiError);
+  }
 
-    private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
-        return new ResponseEntity<>(apiError, apiError.getStatus());
-    }
-
+  private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
+    return new ResponseEntity<>(apiError, apiError.getStatus());
+  }
 }
