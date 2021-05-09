@@ -82,4 +82,20 @@ public class StockLookupService {
                             return stockLookupMapper.toDto(updateSaveState);
                         });
     }
+
+    //deleteByGroupName
+    // list
+    public void deleteAllSuggestionsBasedONGroupName(String groupName) {
+        List<StockLookUp> stockLookUps = lookUpRepository.findByGroupName(groupName);
+        lookUpRepository.deleteAll(stockLookUps);
+    }
+
+    //single
+    public void deleteSuggestionBasedOnGroupandStockName(String groupName, String stockName) {
+        StockLookUp stockLookUp =
+                lookUpRepository
+                        .findByGroupNameAndStockName(groupName, stockName)
+                        .orElseThrow(EntityNotFoundException::new);
+        lookUpRepository.deleteByGroupNameAndStockName(groupName, stockName);
+    }
 }

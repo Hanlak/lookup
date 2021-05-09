@@ -53,4 +53,15 @@ public class LookupController {
     return stockLookupService.updateOldSuggestionOrCreateNew(
             newStockLookUpDTO, groupName, stockName);
   }
+
+  //delete
+  @DeleteMapping("/thestocklookup/suggestion/{groupName}/{stockName}")
+  public void deleteByGroupNameAndStockName(@PathVariable String groupName, @PathVariable String stockName) {
+    stockLookupService.deleteSuggestionBasedOnGroupandStockName(groupName, stockName);
+  }
+
+  @DeleteMapping("/thestocklookup/suggestions/{groupName}")
+  public void deleteByGroupName(@PathVariable String groupName) {
+    stockLookupService.deleteAllSuggestionsBasedONGroupName(groupName);
+  }
 }
