@@ -19,6 +19,12 @@ public class LookupController {
     this.lookUpRepository = lookUpRepository;
   }
 
+
+  @GetMapping("/thestocklookup/health")
+  public String checkHealth() {
+    return "Health OK";
+  }
+
   // Retrieve
   @GetMapping("/thestocklookup/suggestions/{groupName}")
   List<StockLookUpDTO> getAllSuggestionsByGroupName(@PathVariable String groupName) {
