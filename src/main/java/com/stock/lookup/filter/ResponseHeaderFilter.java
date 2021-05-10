@@ -15,8 +15,7 @@ public class ResponseHeaderFilter implements Filter {
           ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
           throws IOException, ServletException {
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-    httpServletResponse.setHeader(
-            "X-My-Correlation-ID", UUID.randomUUID().toString());
+    httpServletResponse.setHeader("X-My-Correlation-ID", UUID.randomUUID().toString());
     filterChain.doFilter(servletRequest, servletResponse);
   }
 
