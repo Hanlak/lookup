@@ -21,7 +21,7 @@ public class LookupController {
   }
 
   // Retrieve
-  @GetMapping("/thestocklookup/suggestions/{groupName}")
+  @GetMapping("/thestocklookup/find/suggestions/{groupName}")
   ResponseEntity<List<StockLookUpDTO>> getAllSuggestionsByGroupName(
           @PathVariable String groupName) {
     List<StockLookUpDTO> stockLookUpDTOList =
@@ -29,7 +29,7 @@ public class LookupController {
     return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.OK);
   }
 
-  @GetMapping("/thestocklookup/suggestion/{groupName}/{stockName}")
+  @GetMapping("/thestocklookup/find/suggestion/{groupName}/{stockName}")
   ResponseEntity<StockLookUpDTO> getSuggestionByGroupandStockName(
           @PathVariable String groupName, @PathVariable String stockName) {
     StockLookUpDTO stockLookUpDTO =
@@ -38,7 +38,7 @@ public class LookupController {
   }
 
   // Create
-  @PostMapping("/thestocklookup/suggestions")
+  @PostMapping("/thestocklookup/create/suggestions")
   ResponseEntity<List<StockLookUpDTO>> addNewSuggestions(
           @RequestBody List<StockLookUpDTO> stockLookUpDtos) {
     List<StockLookUpDTO> stockLookUpDTOList =
@@ -46,14 +46,14 @@ public class LookupController {
     return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.CREATED);
   }
 
-  @PostMapping("/thestocklookup/suggestion")
+  @PostMapping("/thestocklookup/create/suggestion")
   ResponseEntity<StockLookUpDTO> addNewSuggestion(@RequestBody StockLookUpDTO stockLookUpDTO) {
     StockLookUpDTO stockLookUpDtoSaved = stockLookupService.createNewSuggestion(stockLookUpDTO);
     return new ResponseEntity<>(stockLookUpDtoSaved, HttpStatus.CREATED);
   }
 
   // update
-  @PutMapping("/thestocklookup/suggestion/{groupName}/{stockName}")
+  @PutMapping("/thestocklookup/update/suggestion/{groupName}/{stockName}")
   ResponseEntity<StockLookUpDTO> updateTheSuggestion(
           @RequestBody StockLookUpDTO newStockLookUpDTO,
           @PathVariable String groupName,
@@ -64,14 +64,14 @@ public class LookupController {
   }
 
   // delete
-  @DeleteMapping("/thestocklookup/suggestion/{groupName}/{stockName}")
+  @DeleteMapping("/thestocklookup/delete/suggestion/{groupName}/{stockName}")
   public ResponseEntity<String> deleteByGroupNameAndStockName(
           @PathVariable String groupName, @PathVariable String stockName) {
     stockLookupService.deleteSuggestionBasedOnGroupandStockName(groupName, stockName);
     return new ResponseEntity<>("SuccessFully Deleted", HttpStatus.OK);
   }
 
-  @DeleteMapping("/thestocklookup/suggestions/{groupName}")
+  @DeleteMapping("/thestocklookup/delete/suggestions/{groupName}")
   public ResponseEntity<String> deleteByGroupName(@PathVariable String groupName) {
     stockLookupService.deleteAllSuggestionsBasedONGroupName(groupName);
     return new ResponseEntity<>("SuccessFully Deleted", HttpStatus.OK);
