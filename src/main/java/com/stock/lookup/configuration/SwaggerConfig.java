@@ -12,12 +12,12 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    @Bean
-    public Docket stockLookupApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("com.stock.lookup.controller"))
-                .paths(regex("/thestocklookup.*"))
-                .build();
-
-    }
+  @Bean
+  public Docket stockLookupApi() {
+    return new Docket(DocumentationType.SWAGGER_2)
+            .select()
+            .apis(RequestHandlerSelectors.basePackage("com.stock.lookup.controller"))
+            .paths(regex("/thestocklookup.*"))
+            .build();
+  }
 }

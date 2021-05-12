@@ -7,7 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
+
+import static com.stock.lookup.util.RequestValidator.validatePathVariables;
 
 @RestController
 public class LookupController {
@@ -23,7 +27,8 @@ public class LookupController {
   // Retrieve
   @GetMapping("/thestocklookup/find/suggestions/{groupName}")
   ResponseEntity<List<StockLookUpDTO>> getAllSuggestionsByGroupName(
-          @PathVariable String groupName) {
+          @PathVariable @NotBlank String groupName) {
+    validatePathVariables(groupName, "group_name");
     List<StockLookUpDTO> stockLookUpDTOList =
             stockLookupService.getAllSuggestionsBasedONGroupName(groupName);
     return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.OK);
@@ -31,7 +36,8 @@ public class LookupController {
 
   @GetMapping("/thestocklookup/find/suggestion/{groupName}/{stockName}")
   ResponseEntity<StockLookUpDTO> getSuggestionByGroupandStockName(
-          @PathVariable String groupName, @PathVariable String stockName) {
+          @PathVariable @NotBlank String groupName, @PathVariable @NotBlank String stockName) {
+    validatePathVariables(groupName, "group_name", stockName, "stock_name");
     StockLookUpDTO stockLookUpDTO =
             stockLookupService.getSuggestionBasedOnGroupandStockName(groupName, stockName);
     return new ResponseEntity<>(stockLookUpDTO, HttpStatus.OK);
@@ -40,14 +46,15 @@ public class LookupController {
   // Create
   @PostMapping("/thestocklookup/create/suggestions")
   ResponseEntity<List<StockLookUpDTO>> addNewSuggestions(
-          @RequestBody List<StockLookUpDTO> stockLookUpDtos) {
+          @Valid @RequestBody List<StockLookUpDTO> stockLookUpDtos) {
     List<StockLookUpDTO> stockLookUpDTOList =
             stockLookupService.createNewSuggestions(stockLookUpDtos);
     return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.CREATED);
   }
 
   @PostMapping("/thestocklookup/create/suggestion")
-  ResponseEntity<StockLookUpDTO> addNewSuggestion(@RequestBody StockLookUpDTO stockLookUpDTO) {
+  ResponseEntity<StockLookUpDTO> addNewSuggestion(
+          @Valid @RequestBody StockLookUpDTO stockLookUpDTO) {
     StockLookUpDTO stockLookUpDtoSaved = stockLookupService.createNewSuggestion(stockLookUpDTO);
     return new ResponseEntity<>(stockLookUpDtoSaved, HttpStatus.CREATED);
   }
@@ -55,9 +62,10 @@ public class LookupController {
   // update
   @PutMapping("/thestocklookup/update/suggestion/{groupName}/{stockName}")
   ResponseEntity<StockLookUpDTO> updateTheSuggestion(
-          @RequestBody StockLookUpDTO newStockLookUpDTO,
-          @PathVariable String groupName,
-          @PathVariable String stockName) {
+          @Valid @RequestBody StockLookUpDTO newStockLookUpDTO,
+          @PathVariable @NotBlank String groupName,
+          @PathVariable @NotBlank String stockName) {
+    validatePathVariables(groupName, "group_name", stockName, "stock_name");
     StockLookUpDTO stockLookUpDTO =
             stockLookupService.updateOldSuggestionOrCreateNew(newStockLookUpDTO, groupName, stockName);
     return new ResponseEntity<>(stockLookUpDTO, HttpStatus.ACCEPTED);
@@ -66,13 +74,15 @@ public class LookupController {
   // delete
   @DeleteMapping("/thestocklookup/delete/suggestion/{groupName}/{stockName}")
   public ResponseEntity<String> deleteByGroupNameAndStockName(
-          @PathVariable String groupName, @PathVariable String stockName) {
+          @PathVariable @NotBlank String groupName, @PathVariable @NotBlank String stockName) {
+    validatePathVariables(groupName, "group_name", stockName, "stock_name");
     stockLookupService.deleteSuggestionBasedOnGroupandStockName(groupName, stockName);
     return new ResponseEntity<>("SuccessFully Deleted", HttpStatus.OK);
   }
 
   @DeleteMapping("/thestocklookup/delete/suggestions/{groupName}")
-  public ResponseEntity<String> deleteByGroupName(@PathVariable String groupName) {
+  public ResponseEntity<String> deleteByGroupName(@PathVariable @NotBlank String groupName) {
+    validatePathVariables(groupName, "group_name");
     stockLookupService.deleteAllSuggestionsBasedONGroupName(groupName);
     return new ResponseEntity<>("SuccessFully Deleted", HttpStatus.OK);
   }

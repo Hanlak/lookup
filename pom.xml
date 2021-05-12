@@ -35,6 +35,9 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!--
+		STARTING OF SWAGGER PACKAGES
+		-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -47,6 +50,20 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
+		<!--
+		END OF SWAGGER PACKAGES
+		-->
+
+		<!--
+		START OF VALIDATOR PACKAGES
+		-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!--
+		END OF VALIDATOR PACKAGES
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
