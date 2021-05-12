@@ -86,4 +86,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     ApiError apiError = new ApiError(BAD_REQUEST, validationErrors, exception);
     return buildResponseEntity(apiError);
   }
+
+  // for CSV BATCH
+  @ExceptionHandler(CsvConversionException.class)
+  public ResponseEntity<Object> handleCsvConversionException(CsvConversionException exception) {
+    List<String> validationErrors = Arrays.asList("Csv to Dto Conversion Failed");
+    ApiError apiError = new ApiError(BAD_REQUEST, validationErrors, exception);
+    return buildResponseEntity(apiError);
+  }
 }

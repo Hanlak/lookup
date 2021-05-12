@@ -1,10 +1,17 @@
 package com.stock.lookup.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Getter
+@NoArgsConstructor
+@JsonPropertyOrder({"group_name", "stock_name", "weight_age", "buy_start_range", "buy_end_range"})
 public class StockLookUpDTO {
 
   @NotBlank(message = "group_name cannot be empty or null")
@@ -17,8 +24,9 @@ public class StockLookUpDTO {
 
   @NotNull(message = "weight_age cannot be empty or null")
   @JsonProperty("weight_age")
-  public Integer weightAge;
+  public Float weightAge;
 
+  @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
   @NotNull(message = "buy_start_range cannot be empty or null")
   @JsonProperty("buy_start_range")
   public Float buyStartRange;
@@ -28,11 +36,7 @@ public class StockLookUpDTO {
   public Float buyEndRange;
 
   public StockLookUpDTO(
-          String groupName,
-          String stockName,
-          Integer weightAge,
-          Float buyStartRange,
-          Float buyEndRange) {
+          String groupName, String stockName, Float weightAge, Float buyStartRange, Float buyEndRange) {
     this.groupName = groupName;
     this.stockName = stockName;
     this.weightAge = weightAge;
