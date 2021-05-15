@@ -18,8 +18,7 @@ import java.util.stream.Collectors;
 public class CsvBatchLookupService {
 
   private final CsvBatchRepository csvBatchRepository;
-  @Autowired
-  StockLookupMapper stockLookupMapper;
+  @Autowired StockLookupMapper stockLookupMapper;
 
   public CsvBatchLookupService(CsvBatchRepository csvBatchRepository) {
     this.csvBatchRepository = csvBatchRepository;
@@ -30,20 +29,20 @@ public class CsvBatchLookupService {
     List<StockLookUpDTO> stockLookUpDTOS = null;
     try {
       stockLookUpDTOS =
-              CsvUtils.read(StockLookUpDTO.class, new BufferedInputStream(file.getInputStream()));
+          CsvUtils.read(StockLookUpDTO.class, new BufferedInputStream(file.getInputStream()));
     } catch (Exception e) {
       throw new CsvConversionException(e.getLocalizedMessage());
     }
     // END OF THAT LOGIC
     List<StockLookUp> stockLookUps =
-            stockLookUpDTOS
-                    .parallelStream()
-                    .map(stockLookupMapper::fromDto)
-                    .collect(Collectors.toList());
-    return csvBatchRepository
-            .saveAll(stockLookUps)
+        stockLookUpDTOS
             .parallelStream()
-            .map(stockLookupMapper::toDto)
+            .map(stockLookupMapper::fromDto)
             .collect(Collectors.toList());
+    return csvBatchRepository
+        .saveAll(stockLookUps)
+        .parallelStream()
+        .map(stockLookupMapper::toDto)
+        .collect(Collectors.toList());
   }
 }

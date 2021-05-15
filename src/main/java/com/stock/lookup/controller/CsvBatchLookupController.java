@@ -14,14 +14,13 @@ import java.util.List;
 
 @RestController
 public class CsvBatchLookupController {
-    @Autowired
-    CsvBatchLookupService csvBatchLookupService;
+  @Autowired CsvBatchLookupService csvBatchLookupService;
 
-    @PostMapping(value = "/thestocklookup/csvbatch/suggestions", consumes = "multipart/form-data")
-    public ResponseEntity<List<StockLookUpDTO>> createSuggestionFromCSV(
-            @RequestParam("file") MultipartFile file) {
-        List<StockLookUpDTO> stockLookUpDTOList =
-                csvBatchLookupService.createNewSuggestionsBasedOnCSV(file);
-        return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.CREATED);
-    }
+  @PostMapping(value = "/thestocklookup/csvbatch/suggestions", consumes = "multipart/form-data")
+  public ResponseEntity<List<StockLookUpDTO>> createSuggestionFromCSV(
+      @RequestParam("file") MultipartFile file) {
+    List<StockLookUpDTO> stockLookUpDTOList =
+        csvBatchLookupService.createNewSuggestionsBasedOnCSV(file);
+    return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.CREATED);
+  }
 }

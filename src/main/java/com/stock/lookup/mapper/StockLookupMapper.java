@@ -9,19 +9,19 @@ public class StockLookupMapper {
 
   public StockLookUp fromDto(StockLookUpDTO stockLookUpDTO) {
     return new StockLookUp(
-            stockLookUpDTO.groupName,
-            stockLookUpDTO.stockName,
-            stockLookUpDTO.weightAge,
-            stockLookUpDTO.buyStartRange,
-            stockLookUpDTO.buyEndRange);
+        stockLookUpDTO.groupName,
+        stockLookUpDTO.stockName.toUpperCase(),
+        stockLookUpDTO.weightAge,
+        stockLookUpDTO.buyStartRange,
+        stockLookUpDTO.buyEndRange);
   }
 
   public StockLookUpDTO toDto(StockLookUp stockLookUp) {
     return new StockLookUpDTO(
-            stockLookUp.getGroupName(),
-            stockLookUp.getStockName(),
-            stockLookUp.getWeightAge(),
-            stockLookUp.getBuyStartRange(),
-            stockLookUp.getBuyEndRange());
+        stockLookUp.getGroupName(),
+        stockLookUp.getStockName().toUpperCase(),
+        stockLookUp.getWeightAge(),
+        stockLookUp.getBuyStartRange(),
+        stockLookUp.getBuyEndRange());
   }
 }

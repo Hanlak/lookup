@@ -19,7 +19,7 @@ public class StockKey implements Serializable {
     if (!(o instanceof StockKey)) return false;
     StockKey stockKey = (StockKey) o;
     return Objects.equals(this.groupName, stockKey.groupName)
-            && Objects.equals(this.stockName, stockKey.stockName);
+        && Objects.equals(this.stockName, stockKey.stockName);
   }
 
   @Override

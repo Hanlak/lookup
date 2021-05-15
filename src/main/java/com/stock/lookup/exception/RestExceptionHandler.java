@@ -24,10 +24,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   @Override
   protected ResponseEntity<Object> handleHttpMessageNotReadable(
-          HttpMessageNotReadableException ex,
-          HttpHeaders headers,
-          HttpStatus status,
-          WebRequest request) {
+      HttpMessageNotReadableException ex,
+      HttpHeaders headers,
+      HttpStatus status,
+      WebRequest request) {
     List<String> error = Arrays.asList("Malformed JSON request");
     return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
   }
@@ -36,7 +36,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(EntityNotFoundException.class)
   protected ResponseEntity<Object> handleEntityNotFound(
-          EntityNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+      EntityNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
     List<String> error = Arrays.asList("resource not found");
     ApiError apiError = new ApiError(NOT_FOUND, error, ex);
     return buildResponseEntity(apiError);
@@ -44,7 +44,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(DataAccessException.class)
   protected ResponseEntity<Object> handleDataAccessException(
-          DataAccessException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+      DataAccessException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
     List<String> error = Arrays.asList("sql exception");
     ApiError apiError = new ApiError(INTERNAL_SERVER_ERROR, error, ex);
     return buildResponseEntity(apiError);
@@ -56,32 +56,32 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
-          MethodArgumentNotValidException ex,
-          HttpHeaders headers,
-          HttpStatus status,
-          WebRequest request) {
+      MethodArgumentNotValidException ex,
+      HttpHeaders headers,
+      HttpStatus status,
+      WebRequest request) {
     List<String> validationErrors =
-            ex.getBindingResult().getFieldErrors().stream()
-                    .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                    .collect(Collectors.toList());
+        ex.getBindingResult().getFieldErrors().stream()
+            .map(error -> error.getField() + ": " + error.getDefaultMessage())
+            .collect(Collectors.toList());
     ApiError apiError = new ApiError(BAD_REQUEST, validationErrors, ex);
     return buildResponseEntity(apiError);
   }
 
   @ExceptionHandler(ConstraintViolationException.class)
   public ResponseEntity<Object> handleConstraintViolation(
-          ConstraintViolationException exception, WebRequest request) {
+      ConstraintViolationException exception, WebRequest request) {
     List<String> validationErrors =
-            exception.getConstraintViolations().stream()
-                    .map(violation -> violation.getPropertyPath() + ": " + violation.getMessage())
-                    .collect(Collectors.toList());
+        exception.getConstraintViolations().stream()
+            .map(violation -> violation.getPropertyPath() + ": " + violation.getMessage())
+            .collect(Collectors.toList());
     ApiError apiError = new ApiError(BAD_REQUEST, validationErrors, exception);
     return buildResponseEntity(apiError);
   }
 
   @ExceptionHandler(PathVariableValidationException.class)
   public ResponseEntity<Object> handleAllPathValidations(
-          PathVariableValidationException exception) {
+      PathVariableValidationException exception) {
     List<String> validationErrors = Arrays.asList("path variable validation failed");
     ApiError apiError = new ApiError(BAD_REQUEST, validationErrors, exception);
     return buildResponseEntity(apiError);

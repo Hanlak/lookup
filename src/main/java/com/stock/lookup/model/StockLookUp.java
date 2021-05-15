@@ -48,7 +48,7 @@ public class StockLookUp {
   private Date creationDate;
 
   public StockLookUp(
-          String groupName, String stockName, Float weightAge, Float buyStartRange, Float buyEndRange) {
+      String groupName, String stockName, Float weightAge, Float buyStartRange, Float buyEndRange) {
     this.groupName = groupName;
     this.stockName = stockName;
     this.weightAge = weightAge;

@@ -12,8 +12,8 @@ import java.util.UUID;
 public class ResponseHeaderFilter implements Filter {
   @Override
   public void doFilter(
-          ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-          throws IOException, ServletException {
+      ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+      throws IOException, ServletException {
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
     httpServletResponse.setHeader("X-My-Correlation-ID", UUID.randomUUID().toString());
     filterChain.doFilter(servletRequest, servletResponse);
