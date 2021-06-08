@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,6 +102,7 @@ public class StockLookupService {
   }
 
   // single
+  @Transactional
   public void deleteSuggestionBasedOnGroupandStockName(String groupName, String stockName) {
     StockLookUp stockLookUp =
         lookUpRepository
