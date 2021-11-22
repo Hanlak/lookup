@@ -2,7 +2,7 @@ package com.stock.lookup.service;
 
 import com.stock.lookup.dao.MailSubRepository;
 import com.stock.lookup.dto.MailSubDTO;
-import com.stock.lookup.mapper.MailSubMapper;
+import com.stock.lookup.mapper.IMailSubMapper;
 import com.stock.lookup.model.MailSub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class MailSubService {
 
     private final MailSubRepository mailSubRepository;
     @Autowired
-    MailSubMapper mailSubMapper;
+    IMailSubMapper mailSubMapper;
 
     public MailSubService(MailSubRepository mailSubRepository) {
         this.mailSubRepository = mailSubRepository;
