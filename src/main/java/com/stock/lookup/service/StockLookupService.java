@@ -83,7 +83,7 @@ public class StockLookupService {
                         lookUp -> {
                             lookUp.setBuyStartRange(newStockLookUpDTO.buyStartRange);
                             lookUp.setBuyEndRange(newStockLookUpDTO.buyEndRange);
-                            lookUp.setWeightAge(newStockLookUpDTO.weightAge);
+                            lookUp.setCategory(newStockLookUpDTO.category);
                             StockLookUp stockLookUp = lookUpRepository.save(lookUp);
                             return stockLookupMapper.toDto(stockLookUp);
                         })

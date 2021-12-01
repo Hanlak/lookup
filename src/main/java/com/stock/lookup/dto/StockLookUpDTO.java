@@ -23,8 +23,8 @@ public class StockLookUpDTO {
   public String stockName;
 
   @NotNull(message = "weight_age cannot be empty or null")
-  @JsonProperty("weight_age")
-  public Float weightAge;
+  @JsonProperty("category")
+  public String category;
 
   @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
   @NotNull(message = "buy_start_range cannot be empty or null")
@@ -36,10 +36,10 @@ public class StockLookUpDTO {
   public Float buyEndRange;
 
   public StockLookUpDTO(
-      String groupName, String stockName, Float weightAge, Float buyStartRange, Float buyEndRange) {
+      String groupName, String stockName, String category, Float buyStartRange, Float buyEndRange) {
     this.groupName = groupName;
     this.stockName = stockName;
-    this.weightAge = weightAge;
+    this.category = category;
     this.buyStartRange = buyStartRange;
     this.buyEndRange = buyEndRange;
   }
