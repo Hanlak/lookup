@@ -28,9 +28,9 @@ public class StockLookUp {
   @JsonProperty("stock_name")
   private String stockName;
 
-  @Column(name = "WEIGHT_AGE", nullable = false)
-  @JsonProperty("weight_age")
-  private Float weightAge;
+  @Column(name = "CATEGORY", nullable = false)
+  @JsonProperty("category")
+  private String category;
 
   @Column(name = "BUY_START_RANGE", nullable = false)
   @JsonProperty("buy_start_range")
@@ -48,10 +48,10 @@ public class StockLookUp {
   private Date creationDate;
 
   public StockLookUp(
-      String groupName, String stockName, Float weightAge, Float buyStartRange, Float buyEndRange) {
+      String groupName, String stockName, String category, Float buyStartRange, Float buyEndRange) {
     this.groupName = groupName;
     this.stockName = stockName;
-    this.weightAge = weightAge;
+    this.category = category;
     this.buyStartRange = buyStartRange;
     this.buyEndRange = buyEndRange;
   }
