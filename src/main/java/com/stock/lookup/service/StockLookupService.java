@@ -33,7 +33,7 @@ public class StockLookupService {
     }
 
     // single:
-    public StockLookUpDTO getSuggestionBasedOnGroupandStockName(String groupName, String stockName) {
+    public StockLookUpDTO getSuggestionBasedOnGroupAndStockName(String groupName, String stockName) {
         StockLookUp stockLookUp =
                 lookUpRepository
                         .findByGroupNameAndStockName(groupName, stockName)
@@ -42,10 +42,10 @@ public class StockLookupService {
     }
 
     // singleLike:
-    public List<StockLookUpDTO> getSuggestionBasedOnGroupandStockNameLike(
+    public List<StockLookUpDTO> getSuggestionBasedOnGroupAndStockNameLike(
             String groupName, String stockName) {
         List<StockLookUp> stockLookUpList =
-                lookUpRepository.findByGroupNameAndStockNameContaining(groupName, stockName);
+                lookUpRepository.findByGroupNameAndStockNameStartsWithIgnoreCase(groupName, stockName);
         return stockLookUpList
                 .parallelStream()
                 .map(stockLookupMapper::toDto)

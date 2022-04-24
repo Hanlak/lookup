@@ -37,20 +37,20 @@ public class LookupController {
   }
 
   @GetMapping("/thestocklookup/find/suggestion/{groupName}/{stockName}")
-  ResponseEntity<StockLookUpDTO> getSuggestionByGroupandStockName(
+  ResponseEntity<StockLookUpDTO> getSuggestionByGroupAndStockName(
       @PathVariable @NotBlank String groupName, @PathVariable @NotBlank String stockName) {
     validatePathVariables(groupName, "group_name", stockName, "stock_name");
     StockLookUpDTO stockLookUpDTO =
-        stockLookupService.getSuggestionBasedOnGroupandStockName(groupName, stockName);
+        stockLookupService.getSuggestionBasedOnGroupAndStockName(groupName, stockName);
     return new ResponseEntity<>(stockLookUpDTO, HttpStatus.OK);
   }
 
   @GetMapping("/thestocklookup/findlike/suggestions/{groupName}/{stockName}")
-  ResponseEntity<List<StockLookUpDTO>> getSuggestionByGroupandStockNameLike(
+  ResponseEntity<List<StockLookUpDTO>> getSuggestionByGroupAndStockNameLike(
       @PathVariable @NotBlank String groupName, @PathVariable @NotBlank String stockName) {
     validatePathVariables(groupName, "group_name", stockName, "stock_name");
     List<StockLookUpDTO> stockLookUpDTOList =
-        stockLookupService.getSuggestionBasedOnGroupandStockNameLike(groupName, stockName);
+        stockLookupService.getSuggestionBasedOnGroupAndStockNameLike(groupName, stockName);
     if (stockLookUpDTOList.isEmpty()) {
       return new ResponseEntity<>(stockLookUpDTOList, HttpStatus.NOT_FOUND);
     }

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface LookUpRepository extends JpaRepository<StockLookUp, Long> {
   List<StockLookUp> findByGroupName(String groupName) throws EntityNotFoundException;
 
-  List<StockLookUp> findByGroupNameAndStockNameContaining(String groupName, String stockName)
+  List<StockLookUp> findByGroupNameAndStockNameStartsWithIgnoreCase(String groupName, String stockName)
       throws EntityNotFoundException;
 
   Optional<StockLookUp> findByGroupNameAndStockName(String groupName, String stockName);
