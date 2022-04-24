@@ -6,8 +6,6 @@ import com.stock.lookup.mapper.IStockLookupMapper;
 import com.stock.lookup.model.StockLookUp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
@@ -74,9 +72,9 @@ public class StockLookupService {
 
     // Update::
     public StockLookUpDTO updateOldSuggestionOrCreateNew(
-            @RequestBody StockLookUpDTO newStockLookUpDTO,
-            @PathVariable String groupName,
-            @PathVariable String stockName) {
+            StockLookUpDTO newStockLookUpDTO,
+            String groupName,
+            String stockName) {
         return lookUpRepository
                 .findByGroupNameAndStockName(groupName, stockName)
                 .map(

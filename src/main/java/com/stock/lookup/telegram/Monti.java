@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -21,6 +20,7 @@ public class Monti extends TelegramLongPollingBot {
     @Autowired
     MontiService montiService;
 
+    //ADD USER NAME AND TOKEN IN ENV VAR
     @Value("${CHAT_BOT_TOKEN}")
     private String token;
 
@@ -52,16 +52,10 @@ public class Monti extends TelegramLongPollingBot {
     }
 
     private String responseForUpdate(Update update) {
+        System.out.println("update::" + update);
         String command = update.getMessage().getText();
-        Message input = update.getMessage();
         User telegramUser = update.getMessage().getFrom();
-
-        Long userId = telegramUser.getId();
-        Long chatId = input.getChatId();
-        System.out.println("userId:" + userId);
-        System.out.println("Command::" + command);
-        System.out.println("message::" + input);
-        System.out.println("chatId::" + chatId);
+        System.out.println("USER::" + telegramUser);
         //chatId is groupId;
         //Show Command
         String groupId = "BYG"; //TODO:: chatId.toString();
@@ -81,8 +75,43 @@ public class Monti extends TelegramLongPollingBot {
             return montiService.buyRangeStockNameStartsWith(groupId, split[1]);
         } else if (command.equalsIgnoreCase("/buyRangeAll")) {
             return montiService.buyRangeForAllStocks(groupId);
-        } else
+        } else if (command.toLowerCase(Locale.ROOT).startsWith("/addBuyRange".toLowerCase(Locale.ROOT))) {
+            String[] split = command.split(" ");
+            if (split.length != 2) {
+                return "<b>please pass the input with predefined format with command space message </b>";
+            }
+            String[] data = split[1].split(",");
+            if (data.length != 4) {
+                return "The Input should be stockName,category(NSE or BSE or NABSE),buyStart,BuyEnd";
+            }
+            //stockName,category,buyStart,buyEnd
+            return montiService.addBuyRangeSuggestion(groupId, data[0], data[1], data[2], data[3]);
+        } else if (command.toLowerCase(Locale.ROOT).startsWith("/updateBuyRange".toLowerCase(Locale.ROOT))) {
+            String[] split = command.split(" ");
+            if (split.length != 2) {
+                return "<b>please pass the input with predefined format with command space message </b>";
+            }
+            String[] data = split[1].split(",");
+            if (data.length != 4) {
+                return "The Input should be command space stockName,category(NSE or BSE or NABSE),buyStart,BuyEnd";
+            }
+            //stockName,category,buyStart,buyEnd
+            return montiService.updateBuyRangeSuggestion(groupId, data[0], data[1], data[2], data[3]);
+        } else if (command.toLowerCase(Locale.ROOT).startsWith("/deleteBuyRange".toLowerCase(Locale.ROOT))) {
+            String[] split = command.split(" ");
+            if (split.length != 2) {
+                return "<b>The Input should be \"command space stockName\"</b>";
+            }
+            return montiService.deleteBuyRangeSuggestion(groupId, split[1]);
+        } else if ("/addHelp".equalsIgnoreCase(command)) {
+            return "<b> addHelp </b>";
+        } else if ("/deleteHelp".equalsIgnoreCase(command)) {
+            return "<b> deleteHelp </b>";
+        } else if ("/updateHelp".equalsIgnoreCase(command)) {
+            return "<b> updateHelp </b>";
+        } else {
             return BotMessageTemplates.displayHelp();
+        }
     }
 
 }
