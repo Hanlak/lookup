@@ -25,18 +25,17 @@ public class BotMessageTemplates {
     }
 
     public static String displayHelp() {
-        return "<b>Please Use the Following Commands To Use ** MONTI **</b>" +
-                "\n" +
-                "<b>TO DISPLAY BUY RANGES::</b>" +
-                "\n" +
-                "<b>/showStockName</b>" +
-                "\n" +
-                "<b>/buyRangeFor <space> nameOfTheStockStartsWith</b>" +
-                "\n" +
-                "<b>/buyRangeLike <space> nameOfTheStock</b>" +
-                "\n" +
-                "<b>/buyRangeForAll</b>" +
-                "<b> ******** THANK YOU   *******  </b>";
+        return " Use Only Below Commands with :: /"
+                + "\n"
+                + "<b>1. showStockNames</b>"
+                + "\n"
+                + "<b>2. buyRangeFor space stockName</b>"
+                + "\n"
+                + "<b>3. buyRangeLike space stockNameStartsWith</b>"
+                + "\n"
+                + "<b>4. buyRangeAll</b>"
+                + "\n"
+                + "<b>             Thank You      </b>";
     }
 
 }
