@@ -64,21 +64,17 @@ public class Monti extends TelegramLongPollingBot {
             if (split.length != 2) {
                 return "<b>please pass the input with predefined format with command <space> message </b>";
             }
-            return montiService.buyRangeSpecificStockName(groupId,split[1]);
+            return montiService.buyRangeSpecificStockName(groupId, split[1]);
         } else if (command.toLowerCase(Locale.ROOT).startsWith("/buyRangeLike".toLowerCase(Locale.ROOT))) {
             String[] split = command.split(" ");
             if (split.length != 2) {
                 return "<b>please pass the input with predefined format with command <space> message </b>";
             }
             return montiService.buyRangeStockNameStartsWith(groupId, split[1]);
-        }else if (command.startsWith("/buyRangeAll")) {
-            String[] split = command.split(" ");
-            if (split.length != 2) {
-                return "<b>please pass the input with predefined format with command <space> message </b>";
-            }
+        } else if (command.equalsIgnoreCase("/buyRangeAll")) {
             return montiService.buyRangeForAllStocks(groupId);
-        }
-        return BotMessageTemplates.displayHelp();
+        } else
+            return BotMessageTemplates.displayHelp();
     }
 
 }
