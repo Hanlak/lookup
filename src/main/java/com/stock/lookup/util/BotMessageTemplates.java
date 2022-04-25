@@ -43,13 +43,13 @@ public class BotMessageTemplates {
         return "******** MONTI! *********** \n" +
                 "1. To See Suggestions:: /showHelp "
                 + "\n"
-                + "2.To Add Suggestions:: /addHelp "
+                + "2.To Add :: /addHelp "
                 + "\n"
-                + "3.To update Suggestions:: /updateHelp "
+                + "3.To update ::/updateHelp "
                 + "\n"
-                + "4.To Delete Suggestions:: /deleteHelp "
+                + "4.To Delete ::/deleteHelp "
                 + "\n"
-                + "5.To Delete Suggestions:: /userHelp ";
+                + "5.USER :: /userHelp ";
     }
 
     public static String displayAddHelp() {
