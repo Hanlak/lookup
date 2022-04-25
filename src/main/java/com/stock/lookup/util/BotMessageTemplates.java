@@ -45,9 +45,9 @@ public class BotMessageTemplates {
                 + "\n"
                 + "2.To Add :: /addHelp "
                 + "\n"
-                + "3.To update ::/updateHelp "
+                + "3.To update :: /updateHelp "
                 + "\n"
-                + "4.To Delete ::/deleteHelp "
+                + "4.To Delete :: /deleteHelp "
                 + "\n"
                 + "5.USER :: /userHelp ";
     }
