@@ -16,6 +16,8 @@ public interface BotAuthRepository extends JpaRepository<BotAuth, Long> {
 
     List<BotAuth> findByUserName(String userName) throws EntityNotFoundException;
 
+    void deleteByGroupName(String groupName);
+
     @Modifying
     @Query(value = "UPDATE BOTAUTH b SET b.USER_NAME= :newUser WHERE b.GROUP_NAME = :groupName", nativeQuery = true)
     int updateNewUserAsGroupAdmin(@Param("newUser") String userName, @Param("groupName") String groupName);

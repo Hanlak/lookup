@@ -18,6 +18,7 @@ public class MontiService {
 
     public String showStockNames(String groupId) {
         List<StockLookUpDTO> stockLookUpDTOS = stockLookupService.getAllSuggestionsBasedONGroupName(groupId);
+        if (ObjectUtils.isEmpty(stockLookUpDTOS)) return "<b> No Data Found </b>";
         return BotMessageTemplates.displayStockNames(stockLookUpDTOS);
     }
 
@@ -65,9 +66,9 @@ public class MontiService {
     public String deleteBuyRangeSuggestion(String groupName, String stockName) {
         try {
             stockLookupService.deleteSuggestionBasedOnGroupandStockName(groupName, stockName);
-            return "All Suggestion Deleted..:)";
+            return "Suggestion Deleted For the Stock::" + stockName;
         } catch (Exception e) {
-            return "Failed to Delete suggestions..please try again";
+            return "Failed to Delete suggestions.Try again with Valid StockName";
         }
     }
 

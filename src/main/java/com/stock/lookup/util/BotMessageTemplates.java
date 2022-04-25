@@ -25,27 +25,78 @@ public class BotMessageTemplates {
         return stringBuilder.toString();
     }
 
-    public static String displayHelp() {
+    public static String displayShowHelp() {
         return " Use Only Below Commands with :: /"
                 + "\n"
-                + "<b>1. showStockNames</b>"
+                + "<b>1. /showStockNames </b>"
                 + "\n"
-                + "<b>2. buyRangeFor space stockName</b>"
+                + "<b>2. buyRangeFor#stockName</b>"
                 + "\n"
-                + "<b>3. buyRangeLike space stockNameStartsWith</b>"
+                + "<b>3. buyRangeLike#stockNameStartsWith</b>"
                 + "\n"
-                + "<b>4. buyRangeAll</b>"
                 + "\n"
-                + "<b>             Thank You      </b>";
+                + "<b>4. /buyRangeAll</b>"
+                + "\n";
+    }
+
+    public static String botHelp() {
+        return "******** MONTI! *********** \n" +
+                "1. To See Suggestions:: /showHelp "
+                + "\n"
+                + "2.To Add Suggestions:: /addHelp "
+                + "\n"
+                + "3.To update Suggestions:: /updateHelp "
+                + "\n"
+                + "4.To Delete Suggestions:: /deleteHelp "
+                + "\n"
+                + "5.To Delete Suggestions:: /userHelp ";
+    }
+
+    public static String displayAddHelp() {
+        return " To add the Data Use the below Command:(Admin Only)" +
+                "\n" +
+                "\n" +
+                "addBuyRange#stockName,(NSE or BSE or NABSE),buyStart,buyEnd" +
+                "\n";
+    }
+
+    public static String displayUpdateHelp() {
+        return " To update the Data Use the below Command:(Admin Only)" +
+                "\n" +
+                "\n" +
+                "updateBuyRange#stockName,[NSE or BSE or NABSE](update),buyStart(update),buyEnd(update)" +
+                "\n";
+    }
+
+    public static String displayDeleteHelp() {
+        return " To update the Data Use the below Command:(Admin Only)" +
+                "\n" +
+                "\n" +
+                "deleteBuyRange#stockName" +
+                "\n";
+    }
+
+    public static String displayUserHelp() {
+        return "1. /register => to Register for Admin Access( One Admin Only Allowed )" +
+                "\n" +
+                "\n" +
+                "2. /unregister => to UnRegister for Admin Access(Others Can Register to Gain Access)" +
+                "\n" +
+                "\n" +
+                "3. /getGroupId => To get the GroupId That You have Admin Access For" +
+                "\n" +
+                "\n" +
+                "4. migrateFrom#GroupId of the Data you want from( Should be the Admin for the old group as Well" +
+                "\n";
     }
 
     public static String displayGroupIds(List<BotAuth> botAuths) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<b> GroupIds That You have Write Access</b>").append("\n");
+        stringBuilder.append("<b> You Have Admin Access For:: </b>").append("\n");
         for (BotAuth botAuth : botAuths) {
             stringBuilder.append(botAuth.getGroupName())
-                    .append("\n")
-                    .append(botAuth.getGroupTitle());
+                    .append("::")
+                    .append(botAuth.getGroupTitle()).append("\n");
         }
         return stringBuilder.toString();
     }

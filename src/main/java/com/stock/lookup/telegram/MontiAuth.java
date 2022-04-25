@@ -14,14 +14,15 @@ public class MontiAuth {
     @Autowired
     BotAuthRepository botAuthRepository;
 
-    public boolean registerUser(String groupName, String userName,String name) {
+    public boolean registerUser(String groupName, String userName, String name) {
         try {
-            BotAuth botAuth = new BotAuth(groupName, userName,name);
-            BotAuth botAuthSave = botAuthRepository.save(botAuth);
-            if (ObjectUtils.isEmpty(botAuthSave)) {
-                return false;
+            BotAuth botAuth = botAuthRepository.findDistinctByGroupName(groupName);
+            if (ObjectUtils.isEmpty(botAuth)) {
+                BotAuth botAuth1 = new BotAuth(groupName, userName, name);
+                BotAuth botAuthSave = botAuthRepository.save(botAuth1);
+                return !ObjectUtils.isEmpty(botAuthSave);
             }
-            return true;
+            return false;
         } catch (Exception e) {
             return false;
         }
@@ -54,4 +55,22 @@ public class MontiAuth {
         }
     }
 
+    public String unRegister(String groupId, String userName, String title) {
+        try {
+            botAuthRepository.delete(new BotAuth(groupId, userName, title));
+            return "<b> Admin Access Removed.. AnyOne Can Use /register to Register to Gain Admin Access </b>";
+        } catch (Exception e) {
+            return "<b> UnRegistering Failed..  :(</b>";
+        }
+    }
+
+    @Transactional
+    public String purge(String groupId) {
+        try {
+            botAuthRepository.deleteByGroupName(groupId);
+            return "<b> Purge Success </b>";
+        } catch (Exception e) {
+            return "<b> Purge Failed</b>";
+        }
+    }
 }
