@@ -109,4 +109,11 @@ public class StockLookupService {
                         .orElseThrow(EntityNotFoundException::new);
         lookUpRepository.deleteByGroupNameAndStockName(groupName, stockName);
     }
+    //BOT CODE
+
+    @Transactional
+    public boolean updateGroupId(String newGroupName, String oldGroupName) {
+        int statusUpdate = lookUpRepository.updateGroupId(newGroupName, oldGroupName);
+        return statusUpdate == 1;
+    }
 }

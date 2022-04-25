@@ -1,4 +1,4 @@
-package com.stock.lookup.model;
+package com.stock.lookup.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

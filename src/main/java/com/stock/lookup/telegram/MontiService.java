@@ -70,4 +70,13 @@ public class MontiService {
             return "Failed to Delete suggestions..please try again";
         }
     }
+
+
+    public String updateGroupIdToMigrateData(String newGroupName, String oldGroupName) {
+        try {
+            return stockLookupService.updateGroupId(newGroupName, oldGroupName) ? "<b> Data Migrated From Old Group To This New Group :)</b>" : "<b>Data Migration Failed :(</b>";
+        } catch (Exception e) {
+            return "<b>Data Migration Failed</b>";
+        }
+    }
 }
