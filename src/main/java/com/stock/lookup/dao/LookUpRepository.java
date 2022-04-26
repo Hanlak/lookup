@@ -23,6 +23,6 @@ public interface LookUpRepository extends JpaRepository<StockLookUp, Long> {
     void deleteByGroupNameAndStockName(String groupName, String stockName);
 
     @Modifying
-    @Query(value = "UPDATE LOOKUP b SET b.GROUP_NAME= :newGroupName WHERE b.GROUP_NAME = :oldGroupName", nativeQuery = true)
+    @Query(value = "UPDATE LOOKUP SET GROUP_NAME = :newGroupName WHERE GROUP_NAME = :oldGroupName", nativeQuery = true)
     int updateGroupId(@Param("newGroupName") String newGroupName, @Param("oldGroupName") String oldGroupName);
 }

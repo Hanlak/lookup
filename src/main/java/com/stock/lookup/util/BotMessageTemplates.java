@@ -10,9 +10,9 @@ public class BotMessageTemplates {
 
     public static String displayStockNames(List<StockLookUpDTO> stockNames) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<u><b>StockNames:</b></u>").append("\n");
+        stringBuilder.append("<u><b>StockNames:</b></u>").append("\n\n");
         for (StockLookUpDTO stockLookUpDTO : stockNames) {
-            stringBuilder.append(stockLookUpDTO.getStockName()).append("\n");
+            stringBuilder.append(stockLookUpDTO.getStockName()).append("\n\n");
         }
         return stringBuilder.toString();
     }
@@ -20,12 +20,12 @@ public class BotMessageTemplates {
     public static String displayBuyRange(List<StockLookUpDTO> buyRange) {
         if (ObjectUtils.isEmpty(buyRange)) {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("<u><b>StockNames:</b></u>").append("\t").append("<u><b>BuyStart:</b></u>").append("\t").append("<u><b>BuyEnd:</b></u>").append("\n");
+            stringBuilder.append("<u><b>StockName:</b></u>").append("\t").append("<u><b>BuyStart:</b></u>").append("\t").append("<u><b>BuyEnd:</b></u>").append("\n\n");
             for (StockLookUpDTO stockLookUpDTO : buyRange) {
-                stringBuilder.append(stockLookUpDTO.getStockName()).append("\t").append(stockLookUpDTO.getBuyStartRange()).append("\t").append(stockLookUpDTO.getBuyEndRange()).append("\n");
+                stringBuilder.append(stockLookUpDTO.getStockName()).append("\t").append(stockLookUpDTO.getBuyStartRange()).append("\t").append(stockLookUpDTO.getBuyEndRange()).append("\n\n");
             }
             return stringBuilder.toString();
-        } else return "<b> Data Not Found </b>";
+        } else return "<b> Suggestions Not Found </b>";
     }
 
     public static String displayShowHelp() {
@@ -46,14 +46,18 @@ public class BotMessageTemplates {
     }
 
     public static String botHelp() {
-        return "            MONTI!                  \n" +
-                "1. To See Suggestions:: /showHelp "
+        return "<b>            MONTI!                  </b>\n" +
+                "1.To See Suggestions:: /showHelp "
+                + "\n"
                 + "\n"
                 + "2.To Add :: /addHelp "
                 + "\n"
+                + "\n"
                 + "3.To update :: /updateHelp "
                 + "\n"
+                + "\n"
                 + "4.To Delete :: /deleteHelp "
+                + "\n"
                 + "\n"
                 + "5.USER :: /userHelp ";
     }
@@ -98,11 +102,11 @@ public class BotMessageTemplates {
 
     public static String displayGroupIds(List<BotAuth> botAuths) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<b> You Have Admin Access For:: </b>").append("\n");
+        stringBuilder.append("<b> You Have Admin Access For:: </b>").append("\n\n");
         for (BotAuth botAuth : botAuths) {
             stringBuilder.append(botAuth.getGroupName())
-                    .append("::")
-                    .append(botAuth.getGroupTitle()).append("\n");
+                    .append("   ::  ")
+                    .append(botAuth.getGroupTitle()).append("\n").append("\n");
         }
         return stringBuilder.toString();
     }

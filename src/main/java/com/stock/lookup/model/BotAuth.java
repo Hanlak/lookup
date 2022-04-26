@@ -24,7 +24,7 @@ public class BotAuth {
     @JsonProperty("stock_name")
     private String userName;
 
-    @Column(name = "GROUP_TITLE", nullable = false)
+    @Column(name = "GROUP_TITLE")
     @JsonProperty("groupTitle")
     private String groupTitle;
 
