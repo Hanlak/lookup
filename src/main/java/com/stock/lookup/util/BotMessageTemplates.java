@@ -62,7 +62,7 @@ public class BotMessageTemplates {
                 + "5.USER :: /userHelp "
                 + "\n"
                 + "\n"
-                + "6.BOT HELP :: /botHelp";
+                + "6. BOT_HELP :: /botHelp";
     }
 
     public static String displayAddHelp() {
