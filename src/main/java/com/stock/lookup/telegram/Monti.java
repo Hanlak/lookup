@@ -76,6 +76,19 @@ public class Monti extends TelegramLongPollingBot {
             }
             return "<b> Access for Bot Creator Only </b>";
         }
+        if ("/changeGroup".toLowerCase(Locale.ROOT).startsWith(command.toLowerCase(Locale.ROOT))) {
+
+            if (userId.equalsIgnoreCase("1684141700")) {
+                String[] split = command.split("#");
+                if (split.length != 2) {
+                    return "<b>please pass the input with predefined format with "
+                            + "\n\n"
+                            + "=> command#message </b>";
+                }
+                return montiService.updateGroupIdToMigrateData(groupId, split[1].toUpperCase(Locale.ROOT));
+            }
+            return "<b> Access for Bot Creator Only </b>";
+        }
 
         /**
          * UNREGISTER TO REMOVE ACCESS OF ADD,UPDATE,DELETE AND OTHER WRITE ACCESS
@@ -97,7 +110,7 @@ public class Monti extends TelegramLongPollingBot {
          * PASS THE OWNERSHIP TO ANOTHER USER
          */
         else if (command.startsWith("/updateUser")) {
-            String[] split = command.split(" ");
+            String[] split = command.split("#");
             if (split.length != 2) {
                 return "<b>please pass the input with predefined format with "
                         + "\n"
