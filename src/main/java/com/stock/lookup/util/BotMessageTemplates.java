@@ -2,6 +2,7 @@ package com.stock.lookup.util;
 
 import com.stock.lookup.dto.StockLookUpDTO;
 import com.stock.lookup.model.BotAuth;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -17,20 +18,25 @@ public class BotMessageTemplates {
     }
 
     public static String displayBuyRange(List<StockLookUpDTO> buyRange) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<u><b>StockNames:</b></u>").append("\t").append("<u><b>BuyStart:</b></u>").append("\t").append("<u><b>BuyEnd:</b></u>").append("\n");
-        for (StockLookUpDTO stockLookUpDTO : buyRange) {
-            stringBuilder.append(stockLookUpDTO.getStockName()).append("\t").append(stockLookUpDTO.getBuyStartRange()).append("\t").append(stockLookUpDTO.getBuyEndRange()).append("\n");
-        }
-        return stringBuilder.toString();
+        if (ObjectUtils.isEmpty(buyRange)) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("<u><b>StockNames:</b></u>").append("\t").append("<u><b>BuyStart:</b></u>").append("\t").append("<u><b>BuyEnd:</b></u>").append("\n");
+            for (StockLookUpDTO stockLookUpDTO : buyRange) {
+                stringBuilder.append(stockLookUpDTO.getStockName()).append("\t").append(stockLookUpDTO.getBuyStartRange()).append("\t").append(stockLookUpDTO.getBuyEndRange()).append("\n");
+            }
+            return stringBuilder.toString();
+        } else return "<b> Data Not Found </b>";
     }
 
     public static String displayShowHelp() {
         return " Use Only Below Commands with :: /"
                 + "\n"
+                + "\n"
                 + "<b>1. /showStockNames </b>"
                 + "\n"
+                + "\n"
                 + "<b>2. buyRangeFor#stockName</b>"
+                + "\n"
                 + "\n"
                 + "<b>3. buyRangeLike#stockNameStartsWith</b>"
                 + "\n"
@@ -40,7 +46,7 @@ public class BotMessageTemplates {
     }
 
     public static String botHelp() {
-        return "******** MONTI! *********** \n" +
+        return "            MONTI!                  \n" +
                 "1. To See Suggestions:: /showHelp "
                 + "\n"
                 + "2.To Add :: /addHelp "
