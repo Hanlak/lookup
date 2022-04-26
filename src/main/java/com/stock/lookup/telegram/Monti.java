@@ -85,7 +85,7 @@ public class Monti extends TelegramLongPollingBot {
                             + "\n\n"
                             + "=> command#message </b>";
                 }
-                return montiService.updateGroupIdToMigrateData(groupId, split[1].toUpperCase(Locale.ROOT));
+                return montiService.updateGroupIdToMigrateData(groupId, split[1].trim().toUpperCase(Locale.ROOT));
             }
             return "<b> Access for Bot Creator Only </b>";
         }
