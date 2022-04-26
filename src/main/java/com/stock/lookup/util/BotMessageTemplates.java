@@ -18,7 +18,7 @@ public class BotMessageTemplates {
     }
 
     public static String displayBuyRange(List<StockLookUpDTO> buyRange) {
-        if (ObjectUtils.isEmpty(buyRange)) {
+        if (!ObjectUtils.isEmpty(buyRange)) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("<u><b>StockName:</b></u>").append("\t").append("<u><b>BuyStart:</b></u>").append("\t").append("<u><b>BuyEnd:</b></u>").append("\n\n");
             for (StockLookUpDTO stockLookUpDTO : buyRange) {
@@ -59,7 +59,10 @@ public class BotMessageTemplates {
                 + "4.To Delete :: /deleteHelp "
                 + "\n"
                 + "\n"
-                + "5.USER :: /userHelp ";
+                + "5.USER :: /userHelp "
+                + "\n"
+                + "\n"
+                + "6.BOT HELP :: /botHelp";
     }
 
     public static String displayAddHelp() {

@@ -245,8 +245,10 @@ public class Monti extends TelegramLongPollingBot {
             return BotMessageTemplates.displayUserHelp();
         } else if ("/showHelp".equalsIgnoreCase(command)) {
             return BotMessageTemplates.displayShowHelp();
-        } else {
+        } else if ("/botHelp".equalsIgnoreCase(command)) {
             return BotMessageTemplates.botHelp();
+        } else {
+            return "<b>Command Not Found.. </b> \n\n" + BotMessageTemplates.botHelp();
         }
     }
 }
