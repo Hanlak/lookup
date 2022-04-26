@@ -76,7 +76,7 @@ public class Monti extends TelegramLongPollingBot {
             }
             return "<b> Access for Bot Creator Only </b>";
         }
-        if ("/changeGroup".toLowerCase(Locale.ROOT).startsWith(command.toLowerCase(Locale.ROOT))) {
+        if ((command.toLowerCase(Locale.ROOT)).startsWith("/changeGroup".toLowerCase(Locale.ROOT))) {
 
             if (userId.equalsIgnoreCase("1684141700")) {
                 String[] split = command.split("#");
@@ -109,7 +109,7 @@ public class Monti extends TelegramLongPollingBot {
         /**
          * PASS THE OWNERSHIP TO ANOTHER USER
          */
-        else if (command.startsWith("/updateUser")) {
+        else if (command.toLowerCase(Locale.ROOT).startsWith("/updateUser".toLowerCase(Locale.ROOT))) {
             String[] split = command.split("#");
             if (split.length != 2) {
                 return "<b>please pass the input with predefined format with "
