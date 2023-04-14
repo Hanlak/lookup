@@ -14,33 +14,33 @@ import javax.validation.constraints.NotNull;
 @JsonPropertyOrder({"group_name", "stock_name", "weight_age", "buy_start_range", "buy_end_range"})
 public class StockLookUpDTO {
 
-  @NotBlank(message = "group_name cannot be empty or null")
-  @JsonProperty("group_name")
-  public String groupName;
+    @NotBlank(message = "group_name cannot be empty or null")
+    @JsonProperty("group_name")
+    public String groupName;
 
-  @NotBlank(message = "stock_name cannot be empty or null")
-  @JsonProperty("stock_name")
-  public String stockName;
+    @NotBlank(message = "stock_name cannot be empty or null")
+    @JsonProperty("stock_name")
+    public String stockName;
 
-  @NotNull(message = "weight_age cannot be empty or null")
-  @JsonProperty("category")
-  public String category;
+    @NotNull(message = "weight_age cannot be empty or null")
+    @JsonProperty("category")
+    public String category;
 
-  @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
-  @NotNull(message = "buy_start_range cannot be empty or null")
-  @JsonProperty("buy_start_range")
-  public Float buyStartRange;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
+    @NotNull(message = "buy_start_range cannot be empty or null")
+    @JsonProperty("buy_start_range")
+    public Float buyStartRange;
 
-  @NotNull(message = "buy_end_range cannot be empty or null")
-  @JsonProperty("buy_end_range")
-  public Float buyEndRange;
+    @NotNull(message = "buy_end_range cannot be empty or null")
+    @JsonProperty("buy_end_range")
+    public Float buyEndRange;
 
-  public StockLookUpDTO(
-      String groupName, String stockName, String category, Float buyStartRange, Float buyEndRange) {
-    this.groupName = groupName;
-    this.stockName = stockName;
-    this.category = category;
-    this.buyStartRange = buyStartRange;
-    this.buyEndRange = buyEndRange;
-  }
+    public StockLookUpDTO(
+            String groupName, String stockName, String category, Float buyStartRange, Float buyEndRange) {
+        this.groupName = groupName;
+        this.stockName = stockName;
+        this.category = category;
+        this.buyStartRange = buyStartRange;
+        this.buyEndRange = buyEndRange;
+    }
 }

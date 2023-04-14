@@ -8,12 +8,13 @@ import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface IStockLookupMapper {
-    @Mapping(source = "stockName",target = "stockName",qualifiedByName = "stockUpperCase")
+    @Mapping(source = "stockName", target = "stockName", qualifiedByName = "stockUpperCase")
     StockLookUp fromDto(StockLookUpDTO stockLookUpDTO);
+
     StockLookUpDTO toDto(StockLookUp stockLookUp);
 
     @Named("stockUpperCase")
-    default String toUpperCaseStockName(String name){
+    default String toUpperCaseStockName(String name) {
         return name.toUpperCase();
     }
 }

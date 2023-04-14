@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 public class CsvBatchLookupService {
 
     private final CsvBatchRepository csvBatchRepository;
-    @Autowired IStockLookupMapper stockLookupMapper;
+    @Autowired
+    IStockLookupMapper stockLookupMapper;
 
     public CsvBatchLookupService(CsvBatchRepository csvBatchRepository) {
         this.csvBatchRepository = csvBatchRepository;

@@ -10,22 +10,22 @@ import java.util.UUID;
 @javax.servlet.annotation.WebFilter(urlPatterns = {"/*"})
 @Component
 public class ResponseHeaderFilter implements Filter {
-  @Override
-  public void doFilter(
-      ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-      throws IOException, ServletException {
-    HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-    httpServletResponse.setHeader("X-My-Correlation-ID", UUID.randomUUID().toString());
-    filterChain.doFilter(servletRequest, servletResponse);
-  }
+    @Override
+    public void doFilter(
+            ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+            throws IOException, ServletException {
+        HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+        httpServletResponse.setHeader("X-My-Correlation-ID", UUID.randomUUID().toString());
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
 
-  @Override
-  public void destroy() {
-    // nothing
-  }
+    @Override
+    public void destroy() {
+        // nothing
+    }
 
-  @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
-    // nothing
-  }
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // nothing
+    }
 }
