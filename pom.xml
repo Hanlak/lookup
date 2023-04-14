@@ -32,18 +32,10 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- POST GRE SQL -->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
-<!--		<dependency>-->
-<!--			<groupId>mysql</groupId>-->
-<!--			<artifactId>mysql-connector-java</artifactId>-->
-<!--			<version>5.1.47</version>-->
-<!--		</dependency>-->
 
 		<!--
 		STARTING OF SWAGGER PACKAGES
